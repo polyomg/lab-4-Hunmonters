@@ -1,0 +1,18 @@
+<html th:replace="~{/shared/layout::view(~{::title}, ~{::section})}" xmlns:th="http://www.thymeleaf.org">
+<head><title>Kết quả</title></head>
+<body>
+<section>
+    <h3 th:text="${message}">OK</h3>
+    <ul th:object="${staff}">
+        <li>Email: <b th:text="*{id}"></b></li>
+        <li>Họ tên: <b th:text="*{fullname}"></b></li>
+        <li>Giới tính: <b th:text="*{gender} ? 'Nam' : 'Nữ'"></b></li>
+        <li>Ngày sinh: <b th:text="*{birthday}"></b></li>
+        <li>Lương: <b th:text="*{salary}"></b></li>
+        <li>Level: <b th:text="*{level}"></b></li>
+        <li>Ảnh: <b th:text="*{photo}"></b></li>
+    </ul>
+    <p><a href="/staff/create/form">Nhập lại</a></p>
+</section>
+</body>
+</html>
