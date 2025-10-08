@@ -1,0 +1,45 @@
+<html th:replace="~{/shared/layout::view(~{::title}, ~{::section})}" xmlns:th="http://www.thymeleaf.org">
+<head><title>Nhập nhân viên</title></head>
+<body>
+<section>
+    <p><i th:text="${message}"></i></p>
+
+    <form th:object="${staff}" action="/staff/create/save" method="post" enctype="multipart/form-data">
+        <div class="row">
+            <label>Email</label>
+            <input th:field="*{id}">
+            <i class="error" th:text="${errs != null}? ${errs.id} : ''"></i>
+
+            <label>Họ và tên</label>
+            <input th:field="*{fullname}">
+            <i class="error" th:text="${errs != null}? ${errs.fullname} : ''"></i>
+
+            <label>Giới tính</label>
+            <label><input type="radio" th:field="*{gender}" value="true"> Nam</label>
+            <label><input type="radio" th:field="*{gender}" value="false"> Nữ</label>
+            <i class="error" th:text="${errs != null}? ${errs.gender} : ''"></i>
+
+            <label>Ngày sinh (MM/dd/yyyy)</label>
+            <input th:field="*{birthday}" placeholder="MM/dd/yyyy">
+            <i class="error" th:text="${errs != null}? ${errs.birthday} : ''"></i>
+
+            <label>Hình ảnh</label>
+            <input type="hidden" th:field="*{photo}">
+            <input name="photo_file" type="file">
+
+            <label>Cấp bậc</label>
+            <select th:field="*{level}">
+                <option th:each="e : ${levels.entrySet()}" th:value="${e.key}" th:text="${e.value}"></option>
+            </select>
+            <i class="error" th:text="${errs != null}? ${errs.level} : ''"></i>
+
+            <label>Lương</label>
+            <input th:field="*{salary}" type="number" step="0.01" min="0">
+            <i class="error" th:text="${errs != null}? ${errs.salary} : ''"></i>
+        </div>
+        <br>
+        <button type="submit">Create</button>
+    </form>
+</section>
+</body>
+</html>
